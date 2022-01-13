@@ -2,20 +2,20 @@ let riderHeight = 0;
 
 const rideHeightRequirements = {
 	"fun-car": {
-		'minimum': (12*4) + 6,
-		'maximum': (12*4) + (12*2)
+		'minimum': 1,
+		'maximum': 10
 	},
 	"terror-coaster"  : {
-		'minimum': (12*2) + 3,
-		'maximum': (12*2) + 9
+		'minimum': 2,
+		'maximum': 9
 	},
 	"banana-boat"     : {
-		'minimum': (12*7) + 99,
-		'maximum': (12*7) +101
+		'minimum': 3,
+		'maximum': 8
 	},
 	"saucer-of-death" : {
-		'minimum': 12*5,
-		'maximum': 12*6
+		'minimum': 4,
+		'maximum': 7
 	},
 	"terror-bear-hugs": {
 		'minimum': 1,
@@ -32,20 +32,38 @@ function canRiderRide(height, heightLimit) {
 }
 
 $(document).ready(function() {
+
 	let rides = $("ul.rides").children();
-	$('button#check-height').on('click', function() {
-		$(".rides").show();
+
+	$('#show-all-rides').on('click', function() {
+		for (i = 0; i < rides.length; i++) {
+			$(rides[i]).removeClass("can-ride cannot-ride")
+			$(rides[i]).show()
+		}
+	})
+
+	//$('button#check-height').on('click', function() {
+	$("form").submit(function(event) {
+    event.preventDefault();
+	
     riderHeight = $("#rider-height").val();
 
+		// Iterate over every ride
 		for (i = 0; i < rides.length; i++) {
 			let rideHeightReq = rideHeightRequirements[rides[i].id];
-			$(rides[i]).removeClass("can-ride cannot-ride");
 
-			if(canRiderRide(riderHeight, rideHeightReq)) {
+			// Hide specific rides unless user can ride them
+			// $(rides[i]).hide();
+
+			if (canRiderRide(riderHeight, rideHeightReq)) {
+				// Show rides user can ride & add styling
+				// $(rides[i]).show()
 				$(rides[i]).addClass("can-ride");
 			} else {
-				$(rides[i]).addClass("cannot-ride");
+				$(rides[i]).removeClass("can-ride")
+				// $(rides[i]).addClass("cannot-ride");
 			}
 		}
+		$(".rides").show();
   });
 });

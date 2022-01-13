@@ -2,12 +2,16 @@
 	display: none;
 }
 
-.can-ride {
-	background-color: green;
-	color: red;
-}
+/* .override-show {
+	display: 
+} */
 
 .cannot-ride {
 	background-color: red;
 	color: green;
+}
+
+.can-ride {
+	background-color: green;
+	color: red;
 }
