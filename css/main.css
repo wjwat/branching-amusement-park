@@ -1,0 +1,13 @@
+.rides {
+	display: none;
+}
+
+.can-ride {
+	background-color: green;
+	color: red;
+}
+
+.cannot-ride {
+	background-color: red;
+	color: green;
+}
