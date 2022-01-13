@@ -33,13 +33,13 @@ function canRiderRide(height, heightLimit) {
 
 $(document).ready(function() {
 	let rides = $("ul.rides").children();
-  $("form#height-submission").submit(function(event) {
-    event.preventDefault();
+	$('button#check-height').on('click', function() {
 		$(".rides").show();
     riderHeight = $("#rider-height").val();
 
 		for (i = 0; i < rides.length; i++) {
 			let rideHeightReq = rideHeightRequirements[rides[i].id];
+			$(rides[i]).removeClass("can-ride cannot-ride");
 
 			if(canRiderRide(riderHeight, rideHeightReq)) {
 				$(rides[i]).addClass("can-ride");
