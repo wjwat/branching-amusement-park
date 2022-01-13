@@ -17,10 +17,13 @@ function canRiderRide(height, heightLimit) {
 }
 
 $(document).ready(function() {
+	let rides = $("ul.rides").children();
   $("form#height-submission").submit(function(event) {
     event.preventDefault();
     riderHeight = $("#rider-height").val();
 
-		
+		for (i = 0; i < rides.length; i++) {
+			console.log(canRiderRide(riderHeight, minimumRideHeights[rides[i].id]))
+		}
   });
 });
